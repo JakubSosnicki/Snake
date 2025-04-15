@@ -7,8 +7,10 @@ import java.util.List;
 public class Snake {
 
     private List<Point> body; //List with coords of snake elements
+    private Direction direction; // move direction
 
     public Snake() {
+        direction = Direction.D; //set default move to DOWN
         body = new ArrayList<>();
 
         //snake start elements (length)
@@ -33,5 +35,19 @@ public class Snake {
 
     private List<Point> getTail() {
         return body.subList(1, body.size());
+    }
+
+    public void move() {
+        for (int i = body.size()-1; i > 0 ; i--) {
+            body.get(i).setLocation(body.get(i-1)); // moving object form last to first (without head)
+        }
+
+        switch (direction) {
+            case D -> getHead().y++;
+            case U -> getHead().y--;
+            case L -> getHead().x--;
+            case R -> getHead().x++;
+        }
+
     }
 }
