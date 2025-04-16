@@ -77,4 +77,8 @@ public class Snake {
 
         return false;
     }
+
+    public int getSize() {
+        return body.size();
+    }
 }

@@ -18,6 +18,8 @@ public class MainPanel extends JPanel {
 
         setFocusable(true); // setting focus
         addKeyListener(new MyKeyAdapter()); // listener for keyboard action
+
+        MainFrame.score.setText("Score: " + snake.getSize());  //start text for score label
     }
 
     @Override
@@ -35,6 +37,7 @@ public class MainPanel extends JPanel {
                     snake.move();
                     if (snake.isCollision()) {
                         gameOver = true;        //collision check
+                        MainFrame.score.setText("GAME OVER - Score: " + snake.getSize()); //set score text if game over
                     }
                     repaint(); // refresh window after snake moving
                 }
