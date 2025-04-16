@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 public class MainPanel extends JPanel {
 
     private Snake snake = new Snake();
+    private boolean gameOver = false; //collision result variable
 
     public MainPanel() {
         setPreferredSize(new Dimension(Board.MAX_X, Board.MAX_Y));
@@ -30,8 +31,13 @@ public class MainPanel extends JPanel {
 
         public MainTimer() {
             super(DELAY, e -> {
-                snake.move();
-                repaint(); // refresh window after snake moving
+                if (!gameOver) {  //execute code when game is not over
+                    snake.move();
+                    if (snake.isCollision()) {
+                        gameOver = true;        //collision check
+                    }
+                    repaint(); // refresh window after snake moving
+                }
             });
         }
     }
